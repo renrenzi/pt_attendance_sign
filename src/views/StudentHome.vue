@@ -33,10 +33,10 @@
         <div style="height: 2rem;background: #666;font-size: .5rem;color: #fff;text-align: center;">
             <div style="height: .0005rem"/>
             <p class="copyright">
-                <span data-reactid=".0.9.0.1.0">私人单位版权所有 © 1997-</span>
-                <span data-reactid=".0.9.0.1.1">2020</span>
+                <span data-reactid=".0.9.0.1.0">私人单位版权所有 © 2022-</span>
+                <span data-reactid=".0.9.0.1.1">2023</span>
                 <br data-reactid=".0.9.0.1.2">
-                <span data-reactid=".0.9.0.1.3">著作版本号：201607054118</span>
+                <span data-reactid=".0.9.0.1.3">著作版本号：201912900548</span>
             </p>
         </div>
 
