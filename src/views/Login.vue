@@ -52,6 +52,8 @@
 </template>
 
 <script>
+    import {miniLoginInfo} from "@/api/admin";
+
     export default {
         name: "Login",
 
@@ -66,7 +68,14 @@
         },
         methods: {
             onSubmit() {
-                this.$router.push("/" + "studentHome");
+                miniLoginInfo({
+                  userName: this.username,
+                  password: this.password,
+                  roleName: this.identity
+                }).then(res => {
+                   console.info(res)
+                  //this.$router.push("/" + "studentHome");
+                })
                 /*this.$axios({
                     method: 'post',
                     url: '/login/login',
