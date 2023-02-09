@@ -11,6 +11,10 @@
 </template>
 
 <script>
+    import {pageCourseList} from "@/api/course";
+    import {pageTeacherList} from "@/api/teacher";
+    import {pageClazzList} from "@/api/clazz";
+
     export default {
         name: "MajorSelect",
         data(){
@@ -92,41 +96,39 @@
                 setTimeout(() => this.getTeacher(this.$refs.picker.getValues()[1]), 500);
             },
             getMajor() {
-                let that = this;
-                this.$axios({
-                    method: 'post',
-                    url: '/clock/clockSelect/major',
+                pageClazzList({
+                  pageNum:1,
+                  pageSize:5
                 }).then(res => {
-                    that.columns[0]['values'] = res.data;
-                });
+                  const clazzList = res.data.clazzList
+                  for (let i = 0; i < clazzList.length; i++) {
+                    this.columns[0]['values'].push(clazzList[i].name)
+                  }
+                })
             },
             getProject(major) {
-                // this.major = this.$refs.picker.getValues()[0];
-                let that = this;
-                this.$axios({
-                    method: 'post',
-                    data: {
-                        // data: that.$refs.picker.getValues()[0],
-                        data: major
-                    },
-                    url: '/clock/clockSelect/project',
+                pageCourseList({
+                  pageNum: 1,
+                  pageSize: 5,
+                  major: major
                 }).then(res => {
-                    that.columns[1]['values'] = res.data;
-                });
+                  const pageCourseDtoList = res.data.pageCourseDtoList
+                  for (let i = 0; i < pageCourseDtoList.length; i++) {
+                    this.columns[1]['values'].push(pageCourseDtoList[i].name)
+                  }
+                })
             },
             getTeacher(project) {
-                // this.project = this.$refs.picker.getValues()[1];
-                let that = this;
-                this.$axios({
-                    method: 'post',
-                    data: {
-                        // data: that.$refs.picker.getValues()[1],
-                        data: project,
-                    },
-                    url: '/clock/clockSelect/teacher',
+                pageTeacherList({
+                  pageNum: 1,
+                  pageSize: 5,
+                  project: project
                 }).then(res => {
-                    that.columns[2]['values'] = res.data;
-                });
+                  const teacherList = res.data.teacherList
+                  for (let i = 0; i < teacherList.length; i++) {
+                    this.columns[2]['values'].push(teacherList[i].username)
+                  }
+                })
             },
         },
         mounted() {

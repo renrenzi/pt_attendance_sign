@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {getToken} from "@/js/auth";
 //import { MessageBox, Message } from 'element-ui'
 //import store from '@/store'
 // const baseURL = 'http://120.39.217.37:2236/api'
@@ -15,9 +16,9 @@ const service = axios.create({
 // request interceptor
 service.interceptors.request.use(
     config => {
-        // config.headers.Authorization = getToken()
-        /*
-        config.url = config.url +"?Authorization="+ getToken()*/
+        const Authorization = getToken()
+        console.info(Authorization)
+        Authorization && (config.headers.Authorization = Authorization)
         return config
     },
     error => {

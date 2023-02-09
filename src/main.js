@@ -7,6 +7,7 @@ import store from './store'
 import axios from 'axios'
 import Vehistogram from 'v-charts/lib/histogram.common'
 import user from '@/js/global'
+import moment from 'moment/moment'
 import { Button,Tabbar, TabbarItem,Popup,Icon, NoticeBar,Divider,Uploader,Field,Form,Picker,Loading,Overlay,Sticky,DatetimePicker
 ,Cell,CellGroup,NavBar } from 'vant';
 
@@ -18,7 +19,10 @@ Vue.component(Vehistogram.name, Vehistogram);
 Vue.prototype.$user = user;
 Vue.config.productionTip = false;
 Vue.prototype.$axios = axios;
-
+Vue.filter('moment', function(value, formatString) {
+  formatString = formatString || 'YYYY-MM-DD HH:mm:ss'
+  return moment(value).format(formatString)
+})
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = 'http://localhost:9527/';
 

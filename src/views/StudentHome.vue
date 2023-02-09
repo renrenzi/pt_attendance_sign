@@ -21,11 +21,11 @@
                 <td>异常原因</td>
             </tr>
             <tr v-for="(i,inx) in list" :key="inx">
-                <td>{{i.clockInProject}}</td>
-                <td>{{i.clockTime}}</td>
-                <td>{{i.teacherName}}</td>
-                <td><p :style="i.clockState === '正常'?'color:green':'color:red'">{{i.clockState}}</p></td>
-                <td><p :style="i.clockState === '正常'?'color:black':'color:red'">{{i.errorReason}}</p></td>
+                <td>{{i.courseName}}</td>
+                <td>{{i.date | moment}}</td>
+                <td>{{"测试教师"+inx}}</td>
+                <td><p :style="i.type === '正常'?'color:green':'color:red'">{{i.type}}</p></td>
+                <td><p :style="i.type === '正常'?'color:black':'color:red'">{{i.message}}</p></td>
             </tr>
         </table>
 
@@ -49,6 +49,7 @@
     // @ is an alias to /src
 
     import Footer from "@/components/StudentFooter";
+    import {pageAttendanceList} from "@/api/attendance";
 
     export default {
         name: 'Home',
@@ -80,13 +81,14 @@
         },
         methods: {
             getStudentClockInformation() {
-                let that = this;
-                this.$axios({
-                    method: 'post',
-                    url: 'http://192.168.43.127:8082/graduation/student/clockInformation',
-                }).then(res => {
-                    that.list = res.data['list'];
-                });
+              pageAttendanceList({
+                pageNum: 1,
+                pageSize: 5,
+                studentId: 1
+              }).then(res => {
+                console.info(res);
+                this.list = res.data.attendanceList;
+              })
             },
         },
         mounted() {

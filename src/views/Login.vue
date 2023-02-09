@@ -53,7 +53,7 @@
 
 <script>
     import {miniLoginInfo} from "@/api/admin";
-
+    import { setToken } from '@/js/auth'
     export default {
         name: "Login",
 
@@ -73,32 +73,15 @@
                   password: this.password,
                   roleName: this.identity
                 }).then(res => {
-                   console.info(res)
-                  //this.$router.push("/" + "studentHome");
+                  setToken(res.data)
+                  if (this.identity === 'student') {
+                    this.$router.push("/" + "studentHome")
+                  }else if (this.identity === 'teacher') {
+                    this.$router.push("/" + "teacherHome")
+                  }else {
+                    this.$router.push("/" + "studentHome")
+                  }
                 })
-                /*this.$axios({
-                    method: 'post',
-                    url: '/login/login',
-                    data: {
-                        userName: Encrypt(values['userName']),
-                        userPassword:Encrypt(values['userPassword']),
-                        identity: Encrypt(values['identity'])
-                    },
-                }).then(res => {
-                    if (res.data['isTrue'] === true){
-                        localStorage.userMajor = res.data['major'];
-                        localStorage.userIdentity = res.data['identity'];
-                        this.$router.push("/" + res.data['identity'] + "Home");
-                        if (res.data['identity'] === 'teacher') {
-                            localStorage.teacherName = res.data['teacherName'];
-                        }
-                        if (res.data['identity'] === 'student') {
-                            localStorage.studentName = res.data['studentName'];
-                        }
-                    } else{
-                        console.log("err");
-                    }
-                });*/
             },
 
             //登录身份选择器确认的点击事件
