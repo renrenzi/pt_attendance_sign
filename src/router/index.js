@@ -92,6 +92,39 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/StudentCenter')
   },
+  {
+    path: '/studentInfo',
+    name: 'studentInfo',
+    meta:{
+      title:'修改学生信息'
+    },
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/StudentInfo.vue')
+  },
+  {
+    path: '/attendanceScore',
+    name: 'attendanceScore',
+    meta:{
+      title:'考勤分数统计'
+    },
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/AttendanceScore.vue')
+  },
+  {
+    path: '/attendanceList',
+    name: 'attendanceList',
+    meta:{
+      title:'考勤分数统计'
+    },
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/AttendanceList.vue')
+  },
 ];
 
 const router = new VueRouter({

@@ -135,7 +135,7 @@
             this.getMajor();
             this.getProject("物联网工程");
             this.getTeacher("Java程序语言设计");
-            this.getLocation();
+           // this.getLocation();
         },
     }
 </script>

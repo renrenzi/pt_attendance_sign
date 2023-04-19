@@ -23,14 +23,14 @@
                 </div>
             </div>
         </van-popup>
-        
+
         <majorSelect ref="MajorSelect"/>
-        
+
         <!--截止时间分割器-->
         <van-divider :style="{ color: '#1989fa', borderColor: '#1989fa', padding: '0 16px' }">
             请选择签到截止时间
         </van-divider>
-        
+
         <!--截止时间选择器-->
         <div style="width: 80%;margin: auto">
             <van-datetime-picker
@@ -42,14 +42,14 @@
                     :filter="filter"
                     ref="timePicker"
             />
-            
+
         </div>
-        
+
         <!--最晚截止时间分割线-->
         <van-divider :style="{ color: '#1989fa', borderColor: '#1989fa', padding: '0 16px' }">
             请选择最晚截止时间(迟到范围)
         </van-divider>
-        
+
         <!--最晚截止时间选择器-->
         <div style="width:55%;margin: auto">
             <van-picker
@@ -59,24 +59,8 @@
                     ref="lastTimePicker"
             />
         </div>
-        
-        <!--距离选择分割线-->
-        <van-divider :style="{ color: '#1989fa', borderColor: '#1989fa', padding: '0 16px' }">
-            <p>请选择定位距离范围差</p>
-        </van-divider>
-        
-        <!--距离选择器-->
-        <div style="width:55%;margin: auto">
-            <van-picker
-                    :columns="distance"
-                    :default-index="3"
-                    :visible-item-count="3"
-                    ref="distancePicker"
-            />
-        </div>
-        
         <van-button type="primary" size="large" @click="submit">提交</van-button>
-        
+
         <div style="height: 1rem"/>
     </div>
 </template>
@@ -135,7 +119,7 @@
                     }).then(res => {
                         if (res.data['isOK'] === true ) {
                             that.successShow = true;
-                            
+
                             if(res.data['isUpdate'] === false){
                                 that.successMessage = '设置成功';
                             }else if(res.data['isUpdate'] === true){
@@ -150,7 +134,7 @@
                     this.failureShow = true;
                     this.failureMessage = '请选择您自己的课程';
                 }
-                
+
             },
         },
     }

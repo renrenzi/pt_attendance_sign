@@ -2,11 +2,12 @@ import axios from 'axios'
 import {getToken} from "@/js/auth";
 //import { MessageBox, Message } from 'element-ui'
 //import store from '@/store'
-// const baseURL = 'http://120.39.217.37:2236/api'
+const baseURL = 'http://localhost:9527'
+//const baseURL = 'http://47.113.191.204:9527/api'
 
 // create an axios instance
 const service = axios.create({
-    baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
+    baseURL: baseURL, // url = base url + request url
     // baseURL: baseURL, // url = base url + request url
     // withCredentials: true, // send cookies when cross-domain requests
     timeout: 5000 // request timeout
@@ -19,6 +20,7 @@ service.interceptors.request.use(
         const Authorization = getToken()
         console.info(Authorization)
         Authorization && (config.headers.Authorization = Authorization)
+        config.url = config.url +"?Authorization="+ getToken()
         return config
     },
     error => {

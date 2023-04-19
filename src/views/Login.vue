@@ -59,8 +59,8 @@
 
         data() {
             return {
-                username: '',
-                password: '',
+                username: 'student',
+                password: '123456',
                 columns: ['student','teacher','manager'],
                 identity: '',
                 showPicker: false,
