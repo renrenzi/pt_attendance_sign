@@ -9,13 +9,6 @@
       />
       <van-cell-group inset>
         <van-field
-            v-model="username"
-            name="用户名"
-            label="用户名"
-            placeholder="用户名"
-            :rules="[{ required: true, message: '请填写用户名' }]"
-        />
-        <van-field
             v-model="password"
             type="password"
             name="密码"
@@ -43,6 +36,10 @@
 
 <script>
 
+
+import {editAdminInfo} from "@/api/admin";
+import {Notify} from "vant";
+
 export default {
   name: "StudentInfo",
   data() {
@@ -57,6 +54,15 @@ export default {
       this.$router.push("/" + "studentCenter")
     },
     onSubmit(){
+      editAdminInfo({
+        adminId: this.$store.state.detail.adminId,
+        password: this.password
+      }).then(res => {
+        if (res) {
+          Notify({ type: 'success', message: res.message });
+          this.$router.push('/')
+        }
+      })
     }
   },
 }

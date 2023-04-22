@@ -11,7 +11,17 @@
                 </div>
             </div>
         </van-popup>
-
+      <!--登陆成功的弹窗-->
+        <van-popup v-model="successShow" position="top" :style="{ height: '60%' }">
+          <div>
+            <div>
+              <van-icon name="completed" size="2.5rem" color="#07c160" style="margin: 0.6rem"/>
+            </div>
+            <div>
+              <p style="font-size: 0.4rem">{{successMessage}}</p>
+            </div>
+          </div>
+        </van-popup>
         <div style="height: 1rem"/>
         <majorSelect ref="MajorSelect"/>
         <div style="height: 1rem"/>
@@ -24,6 +34,7 @@
 <script>
     import majorSelect from '@/components/MajorSelect'
     import Footer from '@/components/StudentFooter'
+    import {punchTheClock} from "@/api/attendance";
 
     export default {
         name: "StudentChooseClockIn",
@@ -35,37 +46,24 @@
             return {
                 failureShow: false,
                 failureMessage: '',
-
+                successShow: false,
+                successMessage: ''
             }
         },
 
         methods: {
             submit() {
                 this.$refs.MajorSelect.init();
-                if (this.$refs.MajorSelect.major === localStorage.userMajor) {
-                   // let that = this;
-                    /*this.$axios({
-                        method: 'post',
-                        url: '/student/studentCheckClockSelect',
-                        data: {
-                            clazz: that.$refs.MajorSelect.major,
-                            course: that.$refs.MajorSelect.project,
-                            teacher: that.$refs.MajorSelect.teacher,
-                        },
-                    }).then(res => {
-                        if (res.data['isTrue'] === false) {
-                            this.failureShow = true;
-                            this.failureMessage = '此老师暂未发布签到任务';
-                        }else if (res.data['isTrue'] === true) {
-                            this.$router.push("/clockIn")
-                        }
-                    }).catch(err => {
-                        console.log(err)
-                    })*/
-                } else {
-                    this.failureShow = true;
-                    this.failureMessage = '签到成功';
-                }
+                punchTheClock({
+                  'adminId' : 163,
+                  'courseId' : 11,
+                  'clockingTime' : new Date()
+                }).then(res => {
+                  console.info(res)
+                  this.successShow = true;
+                  this.successMessage = '签到成功';
+                })
+
             }
         },
 

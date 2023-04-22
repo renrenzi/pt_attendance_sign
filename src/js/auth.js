@@ -33,9 +33,9 @@ export function getUser(id) {
 
 export function setUser(user) {
   if (getUserKey()) {
-    return getUserKey().set(user.getAdminUserId, user)
+    return getUserKey().set(user.userId, user)
   } else {
-    UserMap.set(user.getAdminUserId, user)
+    UserMap.set(user.userId, user)
     setUserKey(UserKey, UserMap)
   }
 }

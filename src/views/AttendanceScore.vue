@@ -1,19 +1,20 @@
 <template>
   <div>
-    <van-list
-        :loading="loading"
-        :finished="finished"
-        finished-text="没有更多了"
-        @load="onLoad"
-    >
-      <van-cell v-for="item in attendanceScoreList" :key="item" :title="item" />
-    </van-list>
     <van-nav-bar
         title="各科考勤分"
         left-text="返回"
         left-arrow
         @click-left="onClickLeft"
     />
+    <van-list
+        :loading="loading"
+        :finished="finished"
+        finished-text="没有更多了"
+        @load="onLoad"
+    >
+      <van-cell v-for="item in attendanceScoreList" :key="item.courseName" :title="item.courseName" />
+
+    </van-list>
   </div>
 </template>
 
@@ -22,7 +23,10 @@ export default {
   name: "AttendanceScore",
   data() {
     return {
-      attendanceScoreList: '',
+      attendanceScoreList: [
+        {"courseName": "test"},
+
+      ],
       loading: '',
       finished: '',
     };

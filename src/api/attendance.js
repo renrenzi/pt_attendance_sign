@@ -9,3 +9,11 @@ export const pageAttendanceList = (searchParam) => {
         })
         .catch()
 }
+
+export const punchTheClock = (searchParam) => {
+    return service.post(PREFIX + '/punch/the/clock', searchParam)
+        .then(res => {
+            return res.data
+        })
+        .catch()
+}

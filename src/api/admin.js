@@ -9,3 +9,11 @@ export const miniLoginInfo = (requestParam) => {
         })
         .catch()
 }
+
+export const editAdminInfo = (requestParam) => {
+    return service.post(PREFIX + '/edit/admin/info', requestParam)
+        .then(res => {
+            return res.data
+        })
+        .catch()
+}

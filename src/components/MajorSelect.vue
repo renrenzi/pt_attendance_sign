@@ -91,9 +91,9 @@
             change() {
                 this.init();
                 // setTimeout(() => this.getProject(this.$refs.picker.getValues()[0]), 500);
-                this.getProject(this.$refs.picker.getValues()[0]);
+                // this.getProject(this.$refs.picker.getValues()[0]);
                 // this.getTeacher(this.$refs.picker.getValues()[1])
-                setTimeout(() => this.getTeacher(this.$refs.picker.getValues()[1]), 500);
+                // setTimeout(() => this.getTeacher(this.$refs.picker.getValues()[1]), 500);
             },
             getMajor() {
                 pageClazzList({

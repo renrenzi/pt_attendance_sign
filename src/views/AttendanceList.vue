@@ -1,5 +1,11 @@
 <template>
 <div>
+  <van-nav-bar
+      title="出勤状态统计"
+      left-text="返回"
+      left-arrow
+      @click-left="onClickLeft"
+  />
   <van-list
       :loading="loading"
       :finished="finished"
@@ -8,12 +14,7 @@
   >
     <van-cell v-for="item in attendanceScoreList" :key="item" :title="item" />
   </van-list>
-  <van-nav-bar
-      title="出勤状态统计"
-      left-text="返回"
-      left-arrow
-      @click-left="onClickLeft"
-  />
+
 </div>
 </template>
 

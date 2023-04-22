@@ -53,7 +53,7 @@
 
 <script>
     import {miniLoginInfo} from "@/api/admin";
-    import { setToken } from '@/js/auth'
+    import {setToken} from '@/js/auth'
     export default {
         name: "Login",
 
@@ -73,7 +73,9 @@
                   password: this.password,
                   roleName: this.identity
                 }).then(res => {
-                  setToken(res.data)
+                  this.$store.state.userId = res.data.detail.userId
+                  this.$store.state.detail = res.data.detail
+                  setToken(res.data.token)
                   if (this.identity === 'student') {
                     this.$router.push("/" + "studentHome")
                   }else if (this.identity === 'teacher') {
