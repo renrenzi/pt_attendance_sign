@@ -98,9 +98,11 @@
                 return options;
             },
             submit() {
-                let that = this;
+
+                this.successMessage = '设置成功';
+                this.successShow = true;
                 this.$refs.MajorSelect.init();
-                if (this.$refs.MajorSelect.teacher === localStorage.teacherName) {
+                /*if (this.$refs.MajorSelect.teacher === localStorage.teacherName) {
                     this.$axios({
                         method: 'post',
                         url: '/clock/clockSelect/teacherSetting',
@@ -133,7 +135,7 @@
                     //教师设置签到参数未选择自己的课程
                     this.failureShow = true;
                     this.failureMessage = '请选择您自己的课程';
-                }
+                }*/
 
             },
         },

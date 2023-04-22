@@ -28,13 +28,13 @@ import {
   Cell,
   CellGroup,
   NavBar,
-  List
+  List, Swipe, SwipeItem
 } from 'vant';
-
+import { Image as VanImage } from 'vant';
 Vue.use(Button).use(Tabbar).use(TabbarItem).use(Popup).use(Icon).use(NoticeBar)
         .use(Divider).use(Uploader).use(Field).use(Form).use(Picker).use(Loading)
         .use(Overlay).use(Sticky).use(DatetimePicker).use(Cell).use(CellGroup)
-        .use(NavBar).use(List);
+        .use(NavBar).use(List).use(Swipe).use(SwipeItem).use(VanImage);
 Vue.component(Vehistogram.name, Vehistogram);
 Vue.prototype.$user = user;
 Vue.config.productionTip = false;

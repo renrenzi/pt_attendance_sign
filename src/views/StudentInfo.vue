@@ -51,18 +51,26 @@ export default {
   },
   methods: {
     onClickLeft() {
-      this.$router.push("/" + "studentCenter")
+      if (this.$store.state.detail.roleName === 'student') {
+        this.$router.push("/" + "studentCenter")
+      } else if (this.$store.state.detail.roleName === 'teacher') {
+        this.$router.push("/" + "teacherCenter")
+      }
     },
     onSubmit(){
-      editAdminInfo({
-        adminId: this.$store.state.detail.adminId,
-        password: this.password
-      }).then(res => {
-        if (res) {
-          Notify({ type: 'success', message: res.message });
-          this.$router.push('/')
-        }
-      })
+      if (this.password !== this.confirmPassword) {
+        Notify({ type: 'danger', message: '密码和确认密码不同, 请重新输入' });
+      } else {
+        editAdminInfo({
+          adminId: this.$store.state.detail.adminId,
+          password: this.password
+        }).then(res => {
+          if (res) {
+            Notify({ type: 'success', message: res.message });
+            this.$router.push('/')
+          }
+        })
+      }
     }
   },
 }

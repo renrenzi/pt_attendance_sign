@@ -38,6 +38,17 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Login')
   },
   {
+    path: '/logout',
+    name: 'logout',
+    meta:{
+      title:'退出登录'
+    },
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/logout.vue')
+  },
+  {
     path: '/teacherHome',
     name: 'teacherHome',
     meta:{
@@ -47,6 +58,17 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/TeacherHome')
+  },
+  {
+    path: '/teacherCenter',
+    name: 'teacherCenter',
+    meta:{
+      title:'教师中心'
+    },
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/TeacherCenter.vue')
   },
   {
     path: '/studentChooseClockIn',

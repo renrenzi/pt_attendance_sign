@@ -61,7 +61,7 @@
             return {
                 username: 'student',
                 password: '123456',
-                columns: ['student','teacher','manager'],
+                columns: ['student','teacher'],
                 identity: '',
                 showPicker: false,
             };

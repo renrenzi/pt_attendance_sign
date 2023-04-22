@@ -6,31 +6,31 @@
     <div>
       <div style="height: .3rem"/>
       <van-icon name="user-o" size="1.5rem" color="#bbdbff"/>
-      <p>{{ detail.username }}</p>
+      <p>{{detail.username}}</p>
     </div>
     <div style="background: #EEEEEE;height: .3rem"/>
     <!--        <van-cell value="各科考勤分" is-link to="/attendanceScore" />-->
-    <van-cell value="出勤情况统计" is-link to="/attendanceList"/>
+<!--    <van-cell value="出勤情况统计" is-link to="/attendanceList" />-->
     <div style="background: #EEEEEE;height: .3rem"/>
-    <van-cell value="修改密码" is-link to="/studentInfo"/>
+    <van-cell value="修改密码" is-link to="/studentInfo" />
     <div style="background: #EEEEEE;height: .3rem"/>
     <van-cell value="设置" is-link to="/logout"/>
-    <studentFooter/>
+    <Footer ref="footer"/>
   </div>
 </template>
 
 <script>
-import studentFooter from '@/components/StudentFooter'
-
+import Footer from "@/components/TeacherFooter.vue";
 export default {
-  name: "StudentCenter",
-  data() {
-    return {
+  name: "Teacherenter",
+  data(){
+    return{
       detail: this.$store.state.detail
+
     }
   },
-  components: {
-    studentFooter
+  components:{
+    Footer,
   }
 }
 </script>
