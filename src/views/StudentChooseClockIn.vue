@@ -55,8 +55,8 @@
             submit() {
                 this.$refs.MajorSelect.init();
                 punchTheClock({
-                  'adminId' : 163,
-                  'courseId' : 11,
+                  'adminId' : 167,
+                  'courseId' : 50,
                   'clockingTime' : new Date()
                 }).then(res => {
                   console.info(res)
