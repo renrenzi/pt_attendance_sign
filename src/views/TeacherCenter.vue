@@ -1,7 +1,7 @@
 <template>
   <div>
     <van-nav-bar
-        title="学生中心"
+        title="教师中心"
     />
     <div>
       <div style="height: .3rem"/>

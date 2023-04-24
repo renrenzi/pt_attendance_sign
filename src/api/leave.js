@@ -9,3 +9,11 @@ export const pageLeaveList = (searchParam) => {
     })
     .catch()
 }
+
+export const updateLeaveInfo = (searchParam) => {
+    return service.post(PREFIX + '/update/leave/info', searchParam)
+        .then(res => {
+            return res.data
+        })
+        .catch()
+}

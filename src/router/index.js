@@ -147,6 +147,61 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/AttendanceList.vue')
   },
+  {
+    path: '/attendance',
+    name: 'attendance',
+    meta:{
+      title:'请假'
+    },
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/Attendance.vue')
+  },
+  {
+    path: '/approval',
+    name: 'approval',
+    meta:{
+      title:'审批'
+    },
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/Approval.vue')
+  },
+  {
+    path: '/addAttendance',
+    name: 'addAttendance',
+    meta:{
+      title:'添加请假'
+    },
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/AddAttendance.vue')
+  },
+  {
+    path: '/infoAttendance',
+    name: 'infoAttendance',
+    meta:{
+      title:'请假详情'
+    },
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/InfoAttendance.vue')
+  },
+  {
+    path: '/selectedCourseList',
+    name: 'selectedCourseList',
+    meta:{
+      title:'选课列表'
+    },
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/SelectedCourseList.vue')
+  },
 ];
 
 const router = new VueRouter({

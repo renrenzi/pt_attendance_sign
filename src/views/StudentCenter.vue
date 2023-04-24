@@ -11,6 +11,7 @@
     <div style="background: #EEEEEE;height: .3rem"/>
     <!--        <van-cell value="各科考勤分" is-link to="/attendanceScore" />-->
     <van-cell value="出勤情况统计" is-link to="/attendanceList"/>
+    <van-cell value="选课列表" is-link to="/selectedCourseList"/>
     <div style="background: #EEEEEE;height: .3rem"/>
     <van-cell value="修改密码" is-link to="/studentInfo"/>
     <div style="background: #EEEEEE;height: .3rem"/>

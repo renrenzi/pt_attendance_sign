@@ -51,3 +51,23 @@ export function Decrypt(word, keyStr, ivStr) {
     let decryptedStr = decrypt.toString(CryptoJS.enc.Utf8);
     return decryptedStr.toString();
 }
+
+// 返回格式为xx天xx小时xx分钟
+export function getBetweenTime(faultDate, completeTime) {
+    var stime = Date.parse(new Date(faultDate));
+    var etime = Date.parse(new Date(completeTime));
+    // 两个时间戳相差的毫秒数
+    var usedTime = etime - stime;
+    // 计算相差的天数
+    var days = Math.floor(usedTime / (24 * 3600 * 1000));
+    // 计算天数后剩余的毫秒数
+    var leave1 = usedTime % (24 * 3600 * 1000);
+    // 计算出小时数
+    var hours = Math.floor(leave1 / (3600 * 1000));
+    // 计算小时数后剩余的毫秒数
+    var leave2 = leave1 % (3600 * 1000);
+    // 计算相差分钟数
+    var minutes = Math.floor(leave2 / (60 * 1000));
+    var time = days + "天" + hours + "时" + minutes + "分";
+    return time;
+}
