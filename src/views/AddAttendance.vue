@@ -1,5 +1,29 @@
 <template>
   <div>
+    <van-popup v-model="show" position="bottom" :style="{ height: '60%' }">
+      <div>
+        <van-datetime-picker
+            v-model="currentDate"
+            type="date"
+            title="选择年月日"
+            :min-date="minDate"
+            :max-date="maxDate"
+            @confirm="confirm()"
+        />
+      </div>
+    </van-popup>
+    <van-popup v-model="showTeachName" position="bottom" :style="{ height: '40%' }">
+      <div>
+        <van-picker
+            title="请选择老师"
+            show-toolbar
+            :columns="teacherNameList"
+            @confirm="onConfirmTeacher"
+            @cancel="onCancelTeacher"
+            @change="onChangeTeacher"
+        />
+      </div>
+    </van-popup>
     <van-nav-bar
         title="请假"
         left-text="返回"
@@ -31,23 +55,42 @@
             :rules="[{ required: true, message: '请假备注' }]"
         />
         <van-field
-            v-model="leaveDate"
-            name="请假日期"
-            label="请假日期"
-            placeholder="请假日期"
-        >
+            v-model="startDate"
+            name="开始日期"
+            label="开始日期"
+            placeholder="开始日期"
+            @click="show=true"
+            @confirm="show=false; isEnd = false"
+            disabled
+        />
+        <van-field
+            v-model="endDate"
+            name="结束日期"
+            label="结束日期"
+            placeholder="结束日期"
+            @click="show=true; isEnd = true"
+            @confirm="show=false"
+            disabled
+        />
+        <van-divider :style="{ color: '#1989fa', borderColor: '#1989fa', padding: '0 16px' }"/>
+        <van-field
+            v-model="teacherName"
+            name="审批人"
+            label="审批人"
+            placeholder="审批人"
+            @click="showTeachName=true"
+            disabled
 
-        </van-field>
-        <van-popup :show="show" position="bottom"
-                   :style="{ height: '30%' }">test
-        </van-popup>
+        />
       </van-cell-group>
+
       <div style="margin: 16px;">
         <van-button round block type="primary" native-type="submit">
           提交
         </van-button>
       </div>
     </van-form>
+
     <studentFooter/>
   </div>
 </template>
@@ -56,6 +99,7 @@
 import studentFooter from "@/components/StudentFooter.vue";
 import {updateLeaveInfo} from "@/api/leave";
 import {Notify} from "vant";
+import {pageTeacherList} from "@/api/teacher";
 
 export default {
   name: "AddAttendance",
@@ -71,10 +115,55 @@ export default {
       minDate: new Date(),
       maxDate: new Date(2025, 5, 1),
       show: false,
-      leaveDate: this.currentDate
+      startDate: '',
+      endDate: '',
+      isEnd: false,
+      teacherNameList: [],
+      showTeachName: false,
+      teacherName: ''
     }
   },
+  created() {
+    this.getTeacherList()
+  },
   methods: {
+    getTeacherList() {
+      pageTeacherList({
+        pageNum: 1,
+        pageSize: 100
+      }).then(res => {
+        if (res.code === 2000) {
+          for (let i = 0; i < res.data.teacherList.length; i++) {
+            this.teacherNameList.push(res.data.teacherList[i].username)
+          }
+        }
+      })
+    },
+    onChangeTeacher() {
+
+    },
+    onCancelTeacher() {
+      this.showTeachName = false
+
+    },
+    onConfirmTeacher(value) {
+      this.teacherName = value
+      this.showTeachName = false
+    },
+    timeFormat(time) { // 时间格式化 2019-09-08
+      let year = time.getFullYear();
+      let month = time.getMonth() + 1;
+      let day = time.getDate();
+      return year + '年' + month + '月' + day + '日'
+    },
+    confirm() {
+      if (this.isEnd) {
+        this.endDate = this.timeFormat(this.currentDate)
+      } else {
+        this.startDate = this.timeFormat(this.currentDate)
+      }
+      this.show = false;
+    },
     onClickLeft() {
       this.$router.push("/attendance")
     },

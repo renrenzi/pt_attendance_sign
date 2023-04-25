@@ -1,7 +1,7 @@
 <template>
   <div>
-    <van-tabs :active="active">
-      <van-tab title="待审批" badge="5">
+    <van-tabs :active="active" type="card">
+      <van-tab title="待审批" :badge="list1.length">
         <van-list
             :loading="loading"
             :finished="finished"
@@ -38,7 +38,7 @@
 
         </van-list>
       </van-tab>
-      <van-tab title="已完成">
+      <van-tab title="已完成" :badge="list2.length">
         <van-list
             :loading="loading"
             :finished="finished"
@@ -116,7 +116,6 @@ export default {
             if (list[i].status) {
               this.list2.push(list[i])
             } else {
-              console.info(list[i])
               this.list1.push(list[i])
             }
           }

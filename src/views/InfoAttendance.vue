@@ -70,15 +70,15 @@
         </van-divider>
       </van-cell-group>
       <div v-if="this.$store.state.detail.roleName === 'teacher'">
-        <div style="margin: 16px;" v-if="!status">
+        <div style="margin: 16px;" v-if="status === 'false'">
           <van-row>
             <van-col span="6" offset="6">
-              <van-button type="primary"  size="small" @click="approvalLeave">
+              <van-button type="primary"  size="normal" @click="approvalLeave">
                 通过
               </van-button>
             </van-col>
             <van-col span="6" offset="2">
-              <van-button  type="danger" size="small" @click="rejectLeave">
+              <van-button  type="danger" size="normal" @click="rejectLeave">
                 拒绝
               </van-button>
             </van-col>
@@ -86,9 +86,9 @@
           </van-row>
 
         </div>
-        <div style="margin: 16px;" v-if="status">
+        <div style="margin: 16px;" v-if="status === 'true'">
           <van-button round block type="danger" native-type="submit" @click="cancel">
-            取消
+            作废
           </van-button>
         </div>
       </div>
@@ -123,6 +123,7 @@ export default {
       maxDate: new Date(2025, 5, 1),
       show: false,
       leaveDate: this.currentDate,
+      createDate: null,
       active: 1,
       approvalName: 'teacher'
     }
@@ -147,10 +148,10 @@ export default {
         studentId: this.studentId,
         userName: this.userName,
         nickname: this.nickname,
-        createDate: this.leaveDate,
+        createDate: this.createDate,
         info: this.info,
         remark: this.remark,
-        status: !this.status
+        status: this.status !== 'ture'
       }).then(res => {
         if (res.code === 2000){
           this.$router.push("/approval")
@@ -159,17 +160,20 @@ export default {
       })
     },
     getInfo(){
-      console.info(this.$route.query)
       this.username = this.$route.query.nickname
       this.info = this.$route.query.info
       this.remark = this.$route.query.remark
-      this.leaveDate = this.$route.query.createDate
+      if (this.$route.query.createDate) {
+        this.leaveDate = new Date(this.$route.query.createDate).Format("yyyy-MM-dd HH:mm:ss")
+      }
+
+      this.createDate = this.$route.query.createDate
       this.status = this.$route.query.status
       this.studentId = this.$route.query.studentId
       this.id = this.$route.query.id
       this.nickname = this.$route.query.nickname
       this.userName = this.$route.query.userName
-      if (this.$route.query.status) {
+      if (this.$route.query.status === 'true') {
         // todo 使用真实数据
         this.active = 2
       }

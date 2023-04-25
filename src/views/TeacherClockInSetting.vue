@@ -2,7 +2,7 @@
     <div class="ClockInSetting">
         <!--签到信息选择器-->
         <MajorProjectTeacherSelect/>
-        
+
         <!--吸底-->
         <Footer ref="footer"/>
     </div>
@@ -18,7 +18,7 @@
             Footer,
             MajorProjectTeacherSelect,
         },
-        
+
     }
 </script>
 

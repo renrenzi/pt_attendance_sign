@@ -45,7 +45,7 @@ export default {
     }
   },
   created() {
-    this.getCourseList()
+    //this.getCourseList()
   },
   methods: {
     getCourseList() {
