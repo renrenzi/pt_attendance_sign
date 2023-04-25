@@ -11,7 +11,7 @@
           <van-cell v-for="item in list1" :key="item.id" is-link :to="{path:'/infoAttendance', query: item}">
              请假申请
              <van-row>
-               <van-col span="3">
+               <van-col span="4">
                  姓名：
                </van-col>
                <van-col>
@@ -19,19 +19,11 @@
                </van-col>
              </van-row>
              <van-row>
-               <van-col span="3">
+               <van-col span="4">
                  状态：
                </van-col>
                <van-col>
-                 <div v-if="!item.status">
-                   <van-switch v-model="item.status" disabled size="12px"/>
-                   待审批
-                 </div>
-
-                 <div v-if="item.status">
-                   <van-switch v-model="item.status" disabled size="12px"/>
-                   已完成
-                 </div>
+                 <van-tag type="primary">待审批</van-tag>
                </van-col>
              </van-row>
           </van-cell>
@@ -50,7 +42,7 @@
 
               请假申请
               <van-row>
-                <van-col span="3">
+                <van-col span="4">
                   姓名：
                 </van-col>
                 <van-col>
@@ -58,21 +50,46 @@
                 </van-col>
               </van-row>
               <van-row>
-                <van-col span="3">
+                <van-col span="4">
                   状态：
                 </van-col>
                 <van-col>
-                  <div v-if="!item.status">
-                    <van-switch v-model="item.status" disabled size="12px"/>
-                    待审批
-                  </div>
-
-                  <div v-if="item.status">
-                    <van-switch v-model="item.status" disabled size="12px"/>
-                    已完成
-                  </div>
+                  <van-tag type="success">已完成</van-tag>
                 </van-col>
               </van-row>
+          </van-cell>
+
+        </van-list>
+      </van-tab>
+      <van-tab title="已取消" :badge="list3.length = 100" max="99">
+        <van-list
+            :loading="loading"
+            :finished="finished"
+            finished-text="没有更多了"
+            @load="getAttendanceList"
+        >
+
+          <van-cell v-for="item in list2" :key="item.id" is-link :to="{path:'/infoAttendance', query: item}">
+
+            请假申请
+            <van-row>
+              <van-col span="4">
+                姓名：
+              </van-col>
+              <van-col>
+                {{item.nickname}}
+              </van-col>
+            </van-row>
+            <van-row>
+              <van-col span="4">
+                状态：
+              </van-col>
+              <van-col>
+                <div>
+                  <van-tag type="danger">已取消</van-tag>
+                </div>
+              </van-col>
+            </van-row>
           </van-cell>
 
         </van-list>
@@ -98,7 +115,8 @@ export default {
       loading: false,
       finished: false,
       list1: [],
-      list2: []
+      list2: [],
+      list3: []
     }
   },
   created() {
