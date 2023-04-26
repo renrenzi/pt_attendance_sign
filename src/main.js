@@ -32,7 +32,21 @@ import {
     Swipe,
     SwipeItem,
     PullRefresh,
-    ContactCard, Row, Col, Switch, Step, Steps, Tab, Tabs, CountDown, Badge, Tag, Circle
+    ContactCard,
+    Row,
+    Col,
+    Switch,
+    Step,
+    Steps,
+    Tab,
+    Tabs,
+    CountDown,
+    Badge,
+    Tag,
+    Circle,
+    CollapseItem,
+    Collapse,
+    Skeleton, Search
 } from 'vant';
 import {Image as VanImage} from 'vant';
 import DatePicker from "vant/lib/datetime-picker/DatePicker";
@@ -42,7 +56,7 @@ Vue.use(Button).use(Tabbar).use(TabbarItem).use(Popup).use(Icon).use(NoticeBar)
     .use(NavBar).use(List).use(Swipe).use(SwipeItem).use(VanImage)
     .use(PullRefresh).use(ContactCard).use(Col).use(Row).use(Switch)
     .use(DatePicker).use(Step).use(Steps).use(Tab).use(Tabs).use(CountDown).use(Popup)
-    .use(Badge).use(Tag).use(Circle);
+    .use(Badge).use(Tag).use(Circle).use(Collapse).use(CollapseItem).use(Skeleton).use(Search);
 Vue.component(Vehistogram.name, Vehistogram);
 Vue.prototype.$user = user;
 Vue.config.productionTip = false;

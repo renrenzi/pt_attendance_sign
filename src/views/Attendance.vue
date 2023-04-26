@@ -104,9 +104,11 @@ export default {
     },
     getAttendanceList() {
       pageLeaveList({
-        studentId: this.$store.state.detail.userId,
+        leave: {
+          studentId: this.$store.state.detail.userId
+        },
         pageNum: 1,
-        pageSize: 5
+        pageSize: 20
       }).then(res => {
 
         if (res.code === 2000) {

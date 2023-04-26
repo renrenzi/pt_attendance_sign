@@ -6,6 +6,15 @@
       left-arrow
       @click-left="onClickLeft"
   />
+  <form action="/">
+    <van-search
+        v-model="value"
+        show-action
+        placeholder="请输入搜索关键词"
+        @search="onSearch"
+        @cancel="onCancel"
+    />
+  </form>
   <table align="center" width="100%">
     <tr>
       <td>课程</td>
@@ -37,21 +46,33 @@ export default {
       attendanceScoreList: [],
       loading: '',
       finished: '',
+      value: null,
+      condition: {
+        pageNum: 1,
+        pageSize: 5,
+        attendance: {
+          studentId: this.$store.state.detail.userId
+        }
+      }
     };
   },
   created() {
     this.pageAttendance()
   },
   methods: {
+    onCancel() {
+      this.condition.attendance.name = null
+    },
+    onSearch() {
+      this.condition.attendance.name = this.value
+      this.attendanceScoreList = []
+      this.pageAttendance()
+    },
     onClickLeft() {
       this.$router.push("/" + "studentCenter")
     },
     pageAttendance() {
-      pageAttendanceList({
-        pageNum: 1,
-        pageSize: 5,
-        studentId: 1
-      }).then(res => {
+      pageAttendanceList(this.condition).then(res => {
         this.attendanceScoreList = res.data.attendanceList;
       })
     },
