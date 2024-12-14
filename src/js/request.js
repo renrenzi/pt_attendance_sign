@@ -3,8 +3,8 @@ import {getToken, removeToken} from "@/js/auth";
 import {Notify} from "vant";
 //import { MessageBox, Message } from 'element-ui'
 //import store from '@/store'
-//const baseURL = 'http://localhost:9527/api'
-const baseURL = 'http://47.113.191.204:9527/api'
+const baseURL = 'http://localhost:9527/api'
+//const baseURL = 'http://47.113.191.204:9527/api'
 
 // create an axios instance
 const service = axios.create({
